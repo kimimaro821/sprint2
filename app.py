@@ -28,9 +28,14 @@ def inicio(): #SI NO HAY UN LOGIN VÁLIDO ENTONCES NO ENTRA A INICIO Y SE REDIRE
     except:
         return render_template('login.html', mensajito ="Ojo! No puede entrar sin loguearse.")
 
+
 @app.route('/login/', methods=['GET','POST'])
 def logueo():
     return render_template('login.html')
+
+@app.route('/inicio/')
+def index():
+    return render_template('index.html')
 
 @app.route('/registro/', methods=['GET','POST'])
 def registro():
