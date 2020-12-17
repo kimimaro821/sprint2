@@ -12,7 +12,11 @@
       <h1 class="login">REGISTRO DE USUARIO</h1>
       <br>
 
-      <form action="" method="post" id="formulario" onsubmit="validar_formulario(2);">
+      {% if mensajito %}
+      <h1 class="clarito">{{ mensajito}}</h1>
+      {% endif %}
+
+      <form action="/registro/" method="post" id="formulario" onsubmit="validar_formulario(2);">
             <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
             <br>
             <input type="text" name="usuario" placeholder="Username" id="usuario">

@@ -3,8 +3,8 @@
 
 <head>
       <title>Crear/Actualizar imagen</title>
-      <link rel="stylesheet" href="style.css">
-      <script src="script.js"></script>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
       <meta charset="utf-8">
       
 </head>
@@ -14,7 +14,7 @@
       <br>
 
       <form action="" method="post" id="formulario" onsubmit="return validar_formulario(3);">
-            <img src="vista_previa.png" class="logos" id="preview">
+            <img src="{{ url_for('static', filename='images/vista_previa.png')}}" class="logos" id="preview">
             <br>
             <input type="file" name="archivo" value="Selecciona la imagen" required id="file">
             <br>
@@ -28,7 +28,7 @@
             <input type="submit" name="cargar" class="btn" value="Cargar/Actualizar">
             <br>
             <div style="margin: 10px; font-size: large;">
-                  <label>¿Se arrepintió y desea volver al inicio? </label><a href="index.html">Click aquí</a>
+                  <label>¿Se arrepintió y desea volver al inicio? </label><a href="/">Click aquí</a>
             </div>
 
       </form>

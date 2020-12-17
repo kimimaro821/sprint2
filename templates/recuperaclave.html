@@ -12,6 +12,10 @@
       <h1 class="login">RECUPERAR CLAVE</h1>
       <br>
 
+      {% if mensajito %}
+      <h1 class="clarito">{{ mensajito}}</h1>
+      {% endif %}
+
       <form action="/login/" method="post" id="formulario" onsubmit="return validar_formulario(0);">
             <img src="{{ url_for('static', filename='images/clave.png')}}" class="logos">
             <br>

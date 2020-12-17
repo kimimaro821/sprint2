@@ -11,36 +11,85 @@ app = Flask(__name__)
 SECRET_KEY = os.urandom(32) # Para generar la llave aleatoria
 app.config['SECRET_KEY'] = SECRET_KEY
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def inicio(): #SI NO HAY UN LOGIN VÁLIDO ENTONCES NO ENTRA A INICIO Y SE REDIRECCIONA A LOGIN CON UN MENSAJE
-   try:
-      if request.method == 'POST':
-         usuario = request.form['usuario']
-         clave = request.form['clave']
-         email = request.form['email']
-         if utils.isEmailValid(email):         
-            if utils.isUsernameValid(usuario):  
-                if utils.isPasswordValid(clave):          
-                    return render_template('index.html', mensajito = "Logueado correctamente")
+    try:
+        if request.method == 'POST':
+            usuario = request.form['usuario']
+            clave = request.form['clave']
+            email = request.form['correo']
+            if utils.isEmailValid(email):         
+                if utils.isUsernameValid(usuario):  
+                    if utils.isPasswordValid(clave):          
+                        return render_template('index.html', mensajito = "Logueado correctamente")
+                    else:
+                        return render_template('login.html', mensajito = "La clave no era válida... revise!")
                 else:
-                    return render_template('login.html', mensajito = "La clave no era válida... revise!")
+                    return render_template('login.html', mensajito = "El usuario no era válido... revise!")
             else:
-               return render_template('login.html', mensajito = "El usuario no era válido... revise!")
-         else:
-            return render_template('login.html', mensajito = "El correo no era válido... revise!")
-      else:
-         return render_template('login.html',mensajito="Parece que intentó entrar a inicio por GET... no se vale!")
-   except:
-      return render_template('login.html', mensajito ="Ojo! No puede entrar sin loguearse.")
+                return render_template('login.html', mensajito = "El correo no era válido... revise!")
+        else:
+            return render_template('login.html',mensajito="Parece que intentó entrar a inicio por GET... no se vale!")
+    except:
+        return render_template('login.html', mensajito ="Ojo! No puede entrar sin loguearse.")
 
 @app.route('/login/')
 def login():
     return render_template('login.html')
 
-@app.route('/registro/')
-def login():
-    return render_template('registro.html')
+@app.route('/registro/', methods=['GET','POST'])
+def registro():
+    try:
+        if request.method == 'POST':
+            usuario = request.form['usuario']
+            clave = request.form['clave']
+            repitaclave = request.form['clave']
+            email = request.form['correo']
+            if utils.isEmailValid(email):         
+                if utils.isUsernameValid(usuario):            
+                    if utils.isPasswordValid(clave):          
+                        if clave == repitaclave:
+                            yag = yagmail.SMTP('penarandah@uninorte.edu.co','TuClavePersonal')
+                            yag.send(to=email,subject='Validar cuenta',
+                            contents='Acá va el enlace para activar tu cuenta.') 
+                            return render_template('registro.html', mensajito = "Registro exitoso! A su correo debe llegar el link de activación... (IMPORTANTE: ingresar clave del correo en el archivo app.py)")    
+                        else:
+                            return render_template('registro.html', mensajito = "Las claves no coinciden... revise!")    
+                    else:
+                        return render_template('registro.html', mensajito = "La clave no era válida... revise!")
+                else:
+                    return render_template('registro.html', mensajito = "El usuario no era válido... revise!")
+            else:
+                return render_template('registro.html', mensajito = "El correo no era válido... revise!")
+        else:
+            return render_template('registro.html')
+    except:
+        return render_template('registro.html')
 
-@app.route('/recuperarClave/')
+@app.route('/recuperarClave/', methods=['GET','POST'])
 def recuperarClave():
-    return render_template('recuperarclave.html')
+    try:
+        if request.method == 'POST':
+            email = request.form['correo']
+            if utils.isEmailValid(email):         
+                yag = yagmail.SMTP('penarandah@uninorte.edu.co','TuClavePersonal')
+                yag.send(to=email,subject='Recuperar clave',
+                contents='Recuperando la contraseña. Acá deberíamos enviarte tu clave') 
+                return render_template('recuperarclave.html', mensajito = "Recuperación exitosa! A su correo debe llegar la clave... (IMPORTANTE: ingresar clave del correo en el archivo app.py)")                    
+            else:
+                return render_template('recuperarclave.html', mensajito = "El correo no era válido... revise!")
+        else:
+            return render_template('recuperarclave.html')
+    except:
+        return render_template('recuperarclave.html')
+
+@app.route('/crear/')
+def crear():
+    return render_template('crear_actualizar.html')
+
+@app.route('/visualizar/<int:id>') # URL
+def mostrar_foto(id):
+    if id:
+        return render_template('visualizar.html',imagen = "{{ url_for('static', filename='images/image"+str(id)+".jpg')}}")
+    else:
+        return render_template('visualizar.html',imagen = "{{ url_for('static', filename='images/image1.jpg')}}")

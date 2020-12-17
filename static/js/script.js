@@ -6,8 +6,6 @@ function validar_formulario(cual) {
             alert("Debe digitar el correo.");
             document.getElementById("correo").focus();
             return false;
-        }else{
-            alert("Esta acción envía un correo con la clave");
         }
     }
     //si cual = 1 es para validar login
