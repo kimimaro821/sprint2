@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <title>Crear/Actualizar imagen</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="script.js"></script>
+      <meta charset="utf-8">
+      
+</head>
+
+<body id="cielo">
+      <h1 class="login">Crear/Actualizar de imágenes</h1>
+      <br>
+
+      <form action="" method="post" id="formulario" onsubmit="return validar_formulario(3);">
+            <img src="vista_previa.png" class="logos" id="preview">
+            <br>
+            <input type="file" name="archivo" value="Selecciona la imagen" required id="file">
+            <br>
+            <input type="text" name="nombre" placeholder="Nombre de la imagen" id="nombre">
+            <br>
+            <input type="text" name="descripcion" placeholder="Descripción de la imagen" id="descripcion">
+            <br>
+            <input type="radio" id="male" name="gender" style="width: auto;">
+            <label for="male">Esta imagen es pública</label>
+            <br>
+            <input type="submit" name="cargar" class="btn" value="Cargar/Actualizar">
+            <br>
+            <div style="margin: 10px; font-size: large;">
+                  <label>¿Se arrepintió y desea volver al inicio? </label><a href="index.html">Click aquí</a>
+            </div>
+
+      </form>
+
+      <script>
+            document.getElementById("file").onchange = function (e) {
+                  // Creamos el objeto de la clase FileReader
+                  let reader = new FileReader();
+                  // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+                  reader.readAsDataURL(e.target.files[0]);
+                  // Le decimos que cuando este listo ejecute el código interno
+                  reader.onload = function () {
+                        let preview = document.getElementById('preview');
+                        preview.src = reader.result;
+                  };
+            }
+      </script>
+
+
+
+      <footer>
+            <h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
+            <h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
+            <p>Copyright 2020 todos los derechos reservados.</p>
+      </footer>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <title>Registrar Usuario</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="script.js"></script>
+      <meta charset="utf-8">
+</head>
+
+<body id="cielo">
+      <h1 class="login">REGISTRO DE USUARIO</h1>
+      <br>
+
+      <form action="" method="post" id="formulario" onsubmit="validar_formulario(2);">
+            <img src="registro.png" class="logos">
+            <br>
+            <input type="text" name="user" placeholder="Username" id="usuario">
+            <br>
+            <input type="email" name="correo" placeholder="Email" id="correo">
+            <br>
+            <div id="input_container">
+            <input type="password" name="clave" placeholder="Password" id="clave">
+            <img src="galeria/visible.ico" id="input_img" onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+            </div>
+            <div id="input_container">
+            <input type="password" name="repitaclave" placeholder="Repeat Password" id="repetirclave">
+            <img src="galeria/visible.ico" id="input_img" onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
+            </div>
+            <br>
+            <input type="submit" name="Registrar" class="btn" value="Registrar">
+            <br>
+            <div style="margin: 10px; font-size: large;">
+                  <label>¿Se acordó que sí tenía usuario? </label><a href="login.html">Click aquí</a>
+            </div>
+            
+      </form>
+
+
+
+
+
+      <footer>
+		<h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
+		<h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
+		<p>Copyright 2020 todos los derechos reservados.</p>
+	</footer>
+</body>
+
+</html>

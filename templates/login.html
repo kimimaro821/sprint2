@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <title>Inicio de sesión</title>
+      <link rel="stylesheet" href="style.css">
+      <script src="script.js"></script>
+      <meta charset="utf-8">
+</head>
+
+<body id="cielo">
+      <h1 class="login">INICIO DE SESIÓN</h1>
+      <br>
+
+      <form action="" method="post" id="formulario" onsubmit="validar_formulario(1);">
+            <img src="usuario.png" class="logos">
+            <br>
+            <input type="text" name="user" placeholder="Username" id="usuario">
+            <br>
+            <div id="input_container">
+            <input type="password" name="pass" placeholder="Password" id="clave">
+            <img src="galeria/visible.ico" id="input_img" onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+            </div>
+            <br>
+            <input type="submit" name="Ingresar" class="btn" value="Ingresar" >
+            <br>
+            <div style="margin: 10px; font-size: large;">
+                  <label>¿Olvidó su clave? </label><a href="recuperaclave.html">Click aquí</a>
+            </div>
+            <div style="margin: 10px; font-size: large;">
+                  <label>¿Aún no se ha registrado? </label><a href="registro.html">Click aquí</a>
+            </div>
+
+      </form>
+
+
+
+
+
+      <footer>
+		<h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
+		<h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
+		<p>Copyright 2020 todos los derechos reservados.</p>
+	</footer>
+</body>
+
+</html>
