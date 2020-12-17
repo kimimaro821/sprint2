@@ -13,17 +13,22 @@
       <h1 class="login">INICIO DE SESIÓN</h1>
       <br>
 
+      {% if mensajito %}
+      <h1 class="clarito">{{ mensajito}}</h1>
+      {% endif %}
+
       <form action="/" method="post" id="formulario" onsubmit="validar_formulario(1);">
             <img src="{{ url_for('static', filename='images/usuario.png') }}" class="logos">
             <br>
             <input type="text" name="usuario" placeholder="Username" id="usuario">
             <br>
             <div id="input_container">
-            <input type="password" name="clave" placeholder="Password" id="clave">
-            <img src="{{ url_for('static', filename='images/visible.ico') }}" id="input_img" onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+                  <input type="password" name="clave" placeholder="Password" id="clave">
+                  <img src="{{ url_for('static', filename='images/visible.ico') }}" id="input_img"
+                        onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
             </div>
             <br>
-            <input type="submit" name="Ingresar" class="btn" value="Ingresar" >
+            <input type="submit" name="Ingresar" class="btn" value="Ingresar">
             <br>
             <div style="margin: 10px; font-size: large;">
                   <label>¿Olvidó su clave? </label><a href="/recuperaClave/">Click aquí</a>
@@ -39,10 +44,10 @@
 
 
       <footer>
-		<h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
-		<h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
-		<p>Copyright 2020 todos los derechos reservados.</p>
-	</footer>
+            <h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
+            <h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
+            <p>Copyright 2020 todos los derechos reservados.</p>
+      </footer>
 </body>
 
 </html>

@@ -12,26 +12,26 @@ SECRET_KEY = os.urandom(32) # Para generar la llave aleatoria
 app.config['SECRET_KEY'] = SECRET_KEY
 
 @app.route('/')
-def inicio():
+def inicio(): #SI NO HAY UN LOGIN VÁLIDO ENTONCES NO ENTRA A INICIO Y SE REDIRECCIONA A LOGIN CON UN MENSAJE
    try:
       if request.method == 'POST':
          usuario = request.form['usuario']
          clave = request.form['clave']
          email = request.form['email']
          if utils.isEmailValid(email):         
-            if utils.isUsernameValid(usuario):            
-               yag = yagmail.SMTP('penarandah@uninorte.edu.co','TuClavePersonal')
-               yag.send(to=email,subject='Validar cuenta',
-               contents='Revisa tur correo para activar tu cuenta.') 
-               return "Correo enviado a:  " + email
+            if utils.isUsernameValid(usuario):  
+                if utils.isPasswordValid(clave):          
+                    return render_template('index.html', mensajito = "Logueado correctamente")
+                else:
+                    return render_template('login.html', mensajito = "La clave no era válida... revise!")
             else:
-               return "Usuario no valido.  " + usuario
+               return render_template('login.html', mensajito = "El usuario no era válido... revise!")
          else:
-            return "Correo no valido.  " + usuario
+            return render_template('login.html', mensajito = "El correo no era válido... revise!")
       else:
-         return 'Entra con GET' 
+         return render_template('login.html',mensajito="Parece que intentó entrar a inicio por GET... no se vale!")
    except:
-      return render_template('login.html')
+      return render_template('login.html', mensajito ="Ojo! No puede entrar sin loguearse.")
 
 @app.route('/login/')
 def login():

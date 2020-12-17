@@ -6,6 +6,8 @@ function validar_formulario(cual) {
             alert("Debe digitar el correo.");
             document.getElementById("correo").focus();
             return false;
+        }else{
+            alert("Esta acción envía un correo con la clave");
         }
     }
     //si cual = 1 es para validar login
@@ -54,6 +56,9 @@ function validar_formulario(cual) {
             document.getElementById("repetirclave").focus();
             return false;
         }
+        alert("Ha sido registrado. Debe revisar su correo para la activación.");
+        return true;
+
     }
     //si cual = 3 es para validar crear/actualizar imagen
     if (cual == 3) {
