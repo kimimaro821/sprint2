@@ -8,7 +8,7 @@
       <meta charset="utf-8">
 </head>
 
-<body id="cielo">
+<body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
       <h1 class="login">REGISTRO DE USUARIO</h1>
       <br>
 
@@ -16,7 +16,7 @@
       <h1 class="clarito">{{ mensajito}}</h1>
       {% endif %}
 
-      <form action="/registro/" method="post" id="formulario" onsubmit="validar_formulario(2);">
+      <form action="/registro/" method="POST" id="formulario" >
             <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
             <br>
             <input type="text" name="usuario" placeholder="Username" id="usuario">
@@ -34,7 +34,7 @@
                         onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
             </div>
             <br>
-            <input type="submit" name="registrar" class="btn" value="Registrar">
+            <input type="submit" name="registrar" class="btn" value="Registrar" onclick="return validar_formulario(2);">
             <br>
             <div style="margin: 10px; font-size: large;">
                   <label>¿Se acordó que sí tenía usuario? </label><a href="/login/">Click aquí</a>

@@ -7,6 +7,8 @@ function validar_formulario(cual) {
             document.getElementById("correo").focus();
             return false;
         }
+        alert("Le mandamos la clave al correo.");
+        return true;
     }
     //si cual = 1 es para validar login
     if (cual == 1) {
@@ -54,7 +56,7 @@ function validar_formulario(cual) {
             document.getElementById("repetirclave").focus();
             return false;
         }
-        alert("Ha sido registrado. Debe revisar su correo para la activación.");
+        //alert("Ha sido registrado. Debe revisar su correo para la activación.");
         return true;
 
     }
@@ -72,6 +74,9 @@ function validar_formulario(cual) {
             document.getElementById("descripcion").focus();
             return false;
         }
+        alert("La imagen fue cargada exitosamente.");
+        return true;
+
     }
     //si cual = 4 es para validar eliminar imagen
     if (cual == 4) {

@@ -8,7 +8,7 @@
       <meta charset="utf-8">
 </head>
 
-<body id="cielo">
+<body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
       <h1 class="login">RECUPERAR CLAVE</h1>
       <br>
 
@@ -16,7 +16,7 @@
       <h1 class="clarito">{{ mensajito}}</h1>
       {% endif %}
 
-      <form action="/login/" method="post" id="formulario" onsubmit="return validar_formulario(0);">
+      <form action="/recuperarClave/" method="post" id="formulario" onsubmit="return validar_formulario(0);">
             <img src="{{ url_for('static', filename='images/clave.png')}}" class="logos">
             <br>
             <input type="email" name="correo" placeholder="Email" class="input2" id="correo" required>

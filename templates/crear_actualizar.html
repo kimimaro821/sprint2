@@ -9,11 +9,11 @@
       
 </head>
 
-<body id="cielo">
+<body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
       <h1 class="login">Crear/Actualizar de imágenes</h1>
       <br>
 
-      <form action="" method="post" id="formulario" onsubmit="return validar_formulario(3);">
+      <form action="/crear/" method="POST" id="formulario" onsubmit="return validar_formulario(3);">
             <img src="{{ url_for('static', filename='images/vista_previa.png')}}" class="logos" id="preview">
             <br>
             <input type="file" name="archivo" value="Selecciona la imagen" required id="file">
@@ -25,7 +25,7 @@
             <input type="radio" id="male" name="gender" style="width: auto;">
             <label for="male">Esta imagen es pública</label>
             <br>
-            <input type="submit" name="cargar" class="btn" value="Cargar/Actualizar">
+            <input type="submit" name="cargamosImagen" class="btn" value="Cargar/Actualizar">
             <br>
             <div style="margin: 10px; font-size: large;">
                   <label>¿Se arrepintió y desea volver al inicio? </label><a href="/">Click aquí</a>

@@ -9,7 +9,7 @@
       <meta charset="utf-8">
 </head>
 
-<body id="cielo">
+<body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
       <h1 class="login">INICIO DE SESIÓN</h1>
       <br>
 
@@ -17,7 +17,7 @@
       <h1 class="clarito">{{ mensajito}}</h1>
       {% endif %}
 
-      <form action="/" method="post" id="formulario" onsubmit="validar_formulario(1);">
+      <form action="/" method="POST" id="formulario" onsubmit="return validar_formulario(1);">
             <img src="{{ url_for('static', filename='images/usuario.png') }}" class="logos">
             <br>
             <input type="text" name="usuario" placeholder="Username" id="usuario">
@@ -31,7 +31,7 @@
             <input type="submit" name="Ingresar" class="btn" value="Ingresar">
             <br>
             <div style="margin: 10px; font-size: large;">
-                  <label>¿Olvidó su clave? </label><a href="/recuperaClave/">Click aquí</a>
+                  <label>¿Olvidó su clave? </label><a href="/recuperarClave/">Click aquí</a>
             </div>
             <div style="margin: 10px; font-size: large;">
                   <label>¿Aún no se ha registrado? </label><a href="/registro/">Click aquí</a>
