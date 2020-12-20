@@ -10,12 +10,15 @@ from message import mensajes
 import yagmail
 import utils
 import werkzeug
-
+# Para lo de las imágenes:
+FOLDER_CARGA = os.path.abspath("resources") # carpeta donde se cargarán las imágenes.
+from werkzeug.utils import secure_filename # para obtener el nombre del archivo de forma segura.
 
 
 app = Flask(__name__)
 app.secret_key = os.urandom( 24 )
-app.config['UPLOAD_FOLDER'] = './Portafolio'
+app.config["FOLDER_CARGA"] = FOLDER_CARGA
+# app.config['UPLOAD_FOLDER'] = './Portafolio'
 
 if __name__ == '__main__':
     app.run()
@@ -202,15 +205,17 @@ def activemos(llave):
 @app.route('/crear/', methods=['GET','POST'])
 @login_required #significa que requiere de login activo
 def crear():
+    
     try:
+        path = ''
         if request.method == 'POST':
             nombre = request.form['nombre']
             descripcion = request.form['descripcion']
             
-            archivo=request.files['archivo']
-            flash( "aca" )
-            return render_template( 'crear_actualizar.html' )
-            imgpublica=request.form['imgpublica']
+            archivo=request.files["archivo"]
+            
+            #return render_template( 'crear_actualizar.html' )
+            
             error = None
             
             #db = get_db()
@@ -230,12 +235,15 @@ def crear():
                 flash( error )
                 return render_template( 'crear_actualizar.html' )
 
-            filename = secure_filename(archivo.filename)
-            archivo.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            
-            flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es {str(imgpublica)}")
-            return render_template( 'crear_actualizar.html' )
-        return render_template( 'crear_actualizar.html' )
+            filename = secure_filename(archivo.filename)   
+            path = os.path.join(app.config["FOLDER_CARGA"], filename) # ruta de la imagen, incluyendola.
+            archivo.save(path)      
+            flash( 'Imagen guardada con éxito.' )  
+            imgpublica=request.form['imgpublica']
+            flash(f"cargamos la imagen {nombre} con descripción {descripcion}")
+            #flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es {str(imgpublica)}")
+            #return render_template( 'crear_actualizar.html' )
+        return render_template( 'crear_actualizar.html', path=path)
     except:
         return render_template( 'crear_actualizar.html' )
 

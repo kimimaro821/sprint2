@@ -12,7 +12,7 @@
       <h1 class="login">Crear/Actualizar de imágenes</h1>
       <br>
 
-      <form action="/crear/" method="POST" id="formulario" onsubmit="return validar_formulario(3);">
+      <form action="/crear/" method="POST" id="formulario" enctype="multipart/form-data" onsubmit="return validar_formulario(3);">
             <img src="{{ url_for('static', filename='images/vista_previa.png')}}" class="logos" id="preview">
             <br>
             <input type="file" name="archivo" value="Selecciona la imagen" required id="file">
