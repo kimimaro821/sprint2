@@ -239,8 +239,9 @@ def crear():
             path = os.path.join(app.config["FOLDER_CARGA"], filename) # ruta de la imagen, incluyendola.
             archivo.save(path)      
             flash( 'Imagen guardada con éxito.' )  
-            imgpublica=request.form['imgpublica']
-            flash(f"cargamos la imagen {nombre} con descripción {descripcion}")
+            publica = imgpublica=request.form['imgpublica']
+            if str(publica) == 'on':
+                flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es pública")
             #flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es {str(imgpublica)}")
             #return render_template( 'crear_actualizar.html' )
         return render_template( 'crear_actualizar.html', path=path)
