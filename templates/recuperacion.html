@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+      <title>Modificar clave</title>
+      <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+      <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+      <meta charset="utf-8">
+</head>
+
+<body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
+
+      <h1 class="login">MODIFICA TU CONTRASEÑA</h1>
+      <br>
+
+      <center>
+            <form action="/nuevaclave/" method="POST" id="formulario">
+                  <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
+                  <br>
+                  { % if correo % }
+                  <div style="margin: 10px; font-size: large; color:red;" class="flash">Actualiza la clave del correo:</div>
+                  <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ correo }}</div>
+                  { % endif % }
+                  <br>
+                  <div id="input_container">
+                        <input type="password" name="clave" placeholder="New Password" id="clave" required>
+                        <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
+                              onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+                  </div>
+                  <div id="input_container">
+                        <input type="password" name="repitaclave" placeholder="Repeat New Password" id="repetirclave" required>
+                        <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
+                              onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
+                  </div>
+                  <br>
+                  <input type="submit" name="registrar" class="btn" value="Registrar">
+                  <br>
+
+                  <!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+                  {% for message in get_flashed_messages() %}
+                  <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+                  {% endfor %}
+
+
+                  <div style="margin: 10px; font-size: large;">
+                        <label>¿Se acordó que sí tenía usuario? </label><a href="/login/">Click aquí</a>
+                  </div>
+
+            </form>
+      </center>
+
+      <footer>
+            <h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
+            <h4>GERMÁN ALBERTO SÁNCHEZ, VÍCTOR MANUEL ESCOBAR, NANCY PAOLA SÁNCHEZ, DAVID ESTEBAN ARIAS PARRA</h4>
+            <p>Copyright 2020 todos los derechos reservados.</p>
+      </footer>
+</body>
+
+</html>

@@ -12,9 +12,7 @@
       <h1 class="login">RECUPERAR CLAVE</h1>
       <br>
 
-      {% if mensajito %}
-      <h1 class="clarito">{{ mensajito}}</h1>
-      {% endif %}
+      
 
       <form action="/recuperarClave/" method="post" id="formulario" onsubmit="return validar_formulario(0);">
             <img src="{{ url_for('static', filename='images/clave.png')}}" class="logos">
@@ -23,6 +21,10 @@
             <br>
             <input type="submit" name="recuperar" class="btn" value="Recuperar clave" id="recuperar">
             <br>
+            <!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+            {% for message in get_flashed_messages() %}
+            <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+            {% endfor %}
             <div style="margin: 10px; font-size: large;">
                   <label>¿Se acordó de la clave? </label><a href="/login/">Click aquí</a>
             </div>

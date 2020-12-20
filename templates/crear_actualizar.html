@@ -21,11 +21,15 @@
             <br>
             <input type="text" name="descripcion" placeholder="Descripción de la imagen" id="descripcion">
             <br>
-            <input type="radio" id="male" name="gender" style="width: auto;">
+            <input type="checkbox" id="publicaimg" name="imgpublica" style="width: auto;">
             <label for="male">Esta imagen es pública</label>
             <br>
             <input type="submit" name="cargamosImagen" class="btn" value="Cargar/Actualizar">
             <br>
+             <!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+             {% for message in get_flashed_messages() %}
+             <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+             {% endfor %}
             <div style="margin: 10px; font-size: large;">
                   <label>¿Se arrepintió y desea volver al inicio? </label><a href="/inicio/">Click aquí</a>
             </div>

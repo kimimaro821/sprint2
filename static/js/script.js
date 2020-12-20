@@ -74,7 +74,6 @@ function validar_formulario(cual) {
             document.getElementById("descripcion").focus();
             return false;
         }
-        alert("La imagen fue cargada exitosamente.");
         return true;
 
     }
