@@ -13,35 +13,35 @@
       <h1 class="login">INICIO DE SESIÓN</h1>
       <br>
 
-      {% if mensajito %}
-      <h1 class="clarito">{{ mensajito}}</h1>
-      {% endif %}
+      <center>
+            <form action="/" method="POST" id="formulario" onsubmit="return validar_formulario(1);">
+                  <img src="{{ url_for('static', filename='images/usuario.png') }}" class="logos">
+                  <br>
+                  <input type="text" name="usuario" placeholder="Username" id="usuario">
+                  <br>
+                  <div id="input_container">
+                        <input type="password" name="clave" placeholder="Password" id="clave">
+                        <img src="{{ url_for('static', filename='images/visible.ico') }}" id="input_img"
+                              onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+                  </div>
+                  <br>
+                  <input type="submit" name="Ingresar" class="btn" value="Ingresar">
+                  <br>
 
-      <form action="/" method="POST" id="formulario" onsubmit="return validar_formulario(1);">
-            <img src="{{ url_for('static', filename='images/usuario.png') }}" class="logos">
-            <br>
-            <input type="text" name="usuario" placeholder="Username" id="usuario">
-            <br>
-            <div id="input_container">
-                  <input type="password" name="clave" placeholder="Password" id="clave">
-                  <img src="{{ url_for('static', filename='images/visible.ico') }}" id="input_img"
-                        onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
-            </div>
-            <br>
-            <input type="submit" name="Ingresar" class="btn" value="Ingresar">
-            <br>
-            <div style="margin: 10px; font-size: large;">
-                  <label>¿Olvidó su clave? </label><a href="/recuperarClave/">Click aquí</a>
-            </div>
-            <div style="margin: 10px; font-size: large;">
-                  <label>¿Aún no se ha registrado? </label><a href="/registro/">Click aquí</a>
-            </div>
+                  <!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+                  {% for message in get_flashed_messages() %}
+                  <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+                  {% endfor %}
 
-      </form>
+                  <div style="margin: 10px; font-size: large;">
+                        <label>¿Olvidó su clave? </label><a href="/recuperarClave/">Click aquí</a>
+                  </div>
+                  <div style="margin: 10px; font-size: large;">
+                        <label>¿Aún no se ha registrado? </label><a href="/registro/">Click aquí</a>
+                  </div>
 
-
-
-
+            </form>
+      </center>
 
       <footer>
             <h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>

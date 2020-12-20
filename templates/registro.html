@@ -9,42 +9,45 @@
 </head>
 
 <body style="background-image: url('/static/images/cielo.jpg'); background-size: cover;">
+
       <h1 class="login">REGISTRO DE USUARIO</h1>
       <br>
 
-      {% if mensajito %}
-      <h1 class="clarito">{{ mensajito}}</h1>
-      {% endif %}
+      <center>
+            <form action="/registro/" method="POST" id="formulario">
+                  <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
+                  <br>
+                  <input type="text" name="usuario" placeholder="Username" id="usuario">
+                  <br>
+                  <input type="email" name="correo" placeholder="Email" id="correo">
+                  <br>
+                  <div id="input_container">
+                        <input type="password" name="clave" placeholder="Password" id="clave">
+                        <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
+                              onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
+                  </div>
+                  <div id="input_container">
+                        <input type="password" name="repitaclave" placeholder="Repeat Password" id="repetirclave">
+                        <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
+                              onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
+                  </div>
+                  <br>
+                  <input type="submit" name="registrar" class="btn" value="Registrar"
+                        onclick="return validar_formulario(2);">
+                  <br>
 
-      <form action="/registro/" method="POST" id="formulario" >
-            <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
-            <br>
-            <input type="text" name="usuario" placeholder="Username" id="usuario">
-            <br>
-            <input type="email" name="correo" placeholder="Email" id="correo">
-            <br>
-            <div id="input_container">
-                  <input type="password" name="clave" placeholder="Password" id="clave">
-                  <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
-                        onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
-            </div>
-            <div id="input_container">
-                  <input type="password" name="repitaclave" placeholder="Repeat Password" id="repetirclave">
-                  <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
-                        onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
-            </div>
-            <br>
-            <input type="submit" name="registrar" class="btn" value="Registrar" onclick="return validar_formulario(2);">
-            <br>
-            <div style="margin: 10px; font-size: large;">
-                  <label>¿Se acordó que sí tenía usuario? </label><a href="/login/">Click aquí</a>
-            </div>
-
-      </form>
+                  <!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+                  {% for message in get_flashed_messages() %}
+                  <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+                  {% endfor %}
 
 
+                  <div style="margin: 10px; font-size: large;">
+                        <label>¿Se acordó que sí tenía usuario? </label><a href="/login/">Click aquí</a>
+                  </div>
 
-
+            </form>
+      </center>
 
       <footer>
             <h4>PROYECTO MINTIC- UNINORTE - Grupo F</h4>
