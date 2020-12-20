@@ -218,7 +218,7 @@ def crear():
             
             error = None
             
-            #db = get_db()
+            db = get_db()
 
             if len(nombre)>20:
                 error = 'Error. Nombre muy largo.'
@@ -237,19 +237,29 @@ def crear():
 
             filename = secure_filename(archivo.filename)   
             path = os.path.join(app.config["FOLDER_CARGA"], filename) # ruta de la imagen, incluyendola.
+
+            if db.execute( 'SELECT id_imagen FROM imagen WHERE path = ?', (str(filename),) ).fetchone() is not None:
+                error = "Lo sentimos. Ese archivo ya se subió para otra imagen."
+                flash( error )
+                return render_template( 'crear_actualizar.html' )
+
             archivo.save(path)      
-            flash( 'Imagen guardada con éxito.' )  
+            user_id = session.get( 'user_id' )
             publica = imgpublica=request.form['imgpublica']
+            pub = str(0)
             if str(publica) == 'on':
-                flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es pública")
-            #flash(f"cargamos la imagen {nombre} con descripción {descripcion} y es {str(imgpublica)}")
+                pub = str(1)
+            
+            db.execute('INSERT INTO imagen (id_usuario, nombre_imagen, descripcion,publica,path) VALUES (?,?,?,?,?)',((user_id),nombre,descripcion,pub,str(filename)))
+            db.commit()
+            flash('La imagen se cargó exitosamente')  
+                                   
+            
             #return render_template( 'crear_actualizar.html' )
         return render_template( 'crear_actualizar.html', path=path)
     except:
         return render_template( 'crear_actualizar.html' )
 
-
-    
 
 
 
