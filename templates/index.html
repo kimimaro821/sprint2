@@ -23,14 +23,28 @@
 	</div>
 	<section>
 		<input type="search" name="busqueda" id="busqueda" placeholder="Buscar imagen..." style="width: auto;">
+
+		<!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+		<table border="0" style="width: 100%;"></table>
+		<tr>
+			{% for path in portafolio %}
+			<td> <a href="/visualizar/"><img src= "{{ 'resources\'+path[0] }}"  alt="Ojito" height="450"></a> </td>
+			{% endfor %}
+		</tr>
+		</table>
+
 		<table border="0" style="width: 100%;">
 			<tr>
-				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image1.jpg')}}" alt="Ojito" height="450"></a> </td>
-				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image2.jpg')}}" alt="Ojito" height="450"></a> </td>
-				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image3.jpg')}}" alt="Ojito" height="450"></a> </td>
-				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image4.jpg')}}" alt="Ojito" height="450"></a> </td>
-			
-			
+				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image1.jpg')}}" alt="Ojito"
+							height="450"></a> </td>
+				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image2.jpg')}}" alt="Ojito"
+							height="450"></a> </td>
+				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image3.jpg')}}" alt="Ojito"
+							height="450"></a> </td>
+				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image4.jpg')}}" alt="Ojito"
+							height="450"></a> </td>
+
+
 			</tr>
 		</table>
 	</section>

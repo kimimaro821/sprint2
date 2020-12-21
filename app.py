@@ -49,7 +49,12 @@ def load_logged_in_user():
 @app.route( '/inicio/' )
 @login_required #significa que requiere de login activo
 def inicio():
-   return render_template('index.html')
+
+    db = get_db()
+
+    portafolio = db.execute('SELECT path FROM imagen ').fetchall()
+    
+    return render_template('index.html',portafolio = portafolio)
 
 #LA RAÍZ
 @app.route( '/' )
@@ -238,7 +243,7 @@ def crear():
             filename = secure_filename(archivo.filename)   
             path = os.path.join(app.config["FOLDER_CARGA"], filename) # ruta de la imagen, incluyendola.
 
-            if db.execute( 'SELECT id_imagen FROM imagen WHERE path = ?', (str(filename),) ).fetchone() is not None:
+            if db.execute( 'SELECT id_imagen FROM imagen WHERE path = ?', (str(path),) ).fetchone() is not None:
                 error = "Lo sentimos. Ese archivo ya se subió para otra imagen."
                 flash( error )
                 return render_template( 'crear_actualizar.html' )
@@ -250,7 +255,7 @@ def crear():
             if str(publica) == 'on':
                 pub = str(1)
             
-            db.execute('INSERT INTO imagen (id_usuario, nombre_imagen, descripcion,publica,path) VALUES (?,?,?,?,?)',((user_id),nombre,descripcion,pub,str(filename)))
+            db.execute('INSERT INTO imagen (id_usuario, nombre_imagen, descripcion,publica,path) VALUES (?,?,?,?,?)',((user_id),nombre,descripcion,pub,str(path)))
             db.commit()
             flash('La imagen se cargó exitosamente')  
                                    
