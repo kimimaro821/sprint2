@@ -21,8 +21,12 @@
             <br>
             <input type="text" name="descripcion" placeholder="Descripción de la imagen" id="descripcion">
             <br>
-            <input type="checkbox" id="publicaimg" name="imgpublica" style="width: auto;">
-            <label for="male">Esta imagen es pública</label>
+            
+            
+            <input type="radio" id="imgpublica" name="privacidad" style="width: auto;" value="on" checked=checked>
+            <label for="imgpublica">Imagen pública (visible para todos)</label><br>
+            <input type="radio" id="imgprivada" name="privacidad" style="width: auto;" value="off">
+            <label for="imgprivada">Imagen privada (visible sólo para ti)</label><br>
             <br>
             <input type="submit" name="cargamosImagen" class="btn" value="Cargar/Actualizar">
             <br>

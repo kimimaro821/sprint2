@@ -22,17 +22,41 @@
 		</nav>
 	</div>
 	<section>
-		<input type="search" name="busqueda" id="busqueda" placeholder="Buscar imagen..." style="width: auto;">
+		<center>
 
-		<!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
-		<table border="0" style="width: 100%;"></table>
-		<tr>
-			{% for path in portafolio %}
-			<td> <a href="/visualizar/"><img src= "{{ 'resources\'+path[0] }}"  alt="Ojito" height="450"></a> </td>
-			{% endfor %}
-		</tr>
-		</table>
+			<form action="/inicio/" method="POST" id="buscando">
+				<input type="search" name="busqueda" id="busqueda" placeholder="Buscar imagen..." style="width: auto;">
+			</form>
 
+			<form action="/inicio/" method="POST" id="paginacion" style="margin-bottom: 200px;">
+				<!-- acá miramos si hay algún mensaje para mostrarle al usuario -->
+				{% for message in get_flashed_messages() %}
+				<center>
+					<div style="margin: 10px; font-size: large; color:black;" class="flash">{{ message }}</div>
+				</center>
+				{% endfor %}
+				<input type="submit" name="Anterior" value="Anterior" style="width: auto;" />
+				<input type="submit" name="Portafolio" value="Portafolio" style="width: auto;" />
+				<input type="submit" name="Siguiente" value="Siguiente" style="width: auto;" />
+				<input type="submit" name="MisFotos" value="Mis fotos" style="width: auto;" />
+
+				<!-- acá miramos el portafolio a cargar -->
+				<table border="0" style="width: 100%;"></table>
+				<tr>
+					{% for path in portafolio %}
+					<td> <a href="{{'/visualizar/'+path[1]|string}}"><img src="{{'/static/imguser/'+ path[0] }}"
+								alt="Ojito" height="450" style="max-height: 150px;max-width: 150px;"></a> </td>
+					{% endfor %}
+				</tr>
+				</table>
+				<br>
+
+			</form>
+
+		</center>
+
+
+		<!--
 		<table border="0" style="width: 100%;">
 			<tr>
 				<td> <a href="/visualizar/"><img src="{{ url_for('static', filename='images/image1.jpg')}}" alt="Ojito"
@@ -47,6 +71,7 @@
 
 			</tr>
 		</table>
+		-->
 	</section>
 	<footer>
 		<h4>PROYECTO MINTIC- UNINORTE</h4>

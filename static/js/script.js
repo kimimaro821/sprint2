@@ -7,7 +7,7 @@ function validar_formulario(cual) {
             document.getElementById("correo").focus();
             return false;
         }
-        alert("Le mandamos la clave al correo.");
+//        alert("Le mandamos la clave al correo.");
         return true;
     }
     //si cual = 1 es para validar login
@@ -118,5 +118,13 @@ function ocultarContraseña(id){
 
 
 
-
+function cambiar_radio(){
+    if (document.getElementById("radioeditable").className =="imChecked") {
+        document.getElementById("radioeditable").classList.remove("imChecked");
+        document.getElementById("radioeditable").checked = false;
+    } else { 
+        document.getElementById("radioeditable").classList.add("imChecked");
+        document.getElementById("radioeditable").checked = true;
+    };
+}
 

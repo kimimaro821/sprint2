@@ -17,10 +17,15 @@
             <form action="/nuevaclave/" method="POST" id="formulario">
                   <img src="{{ url_for('static', filename='images/registro.png')}}" class="logos">
                   <br>
-                  { % if correo % }
-                  <div style="margin: 10px; font-size: large; color:red;" class="flash">Actualiza la clave del correo:</div>
-                  <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ correo }}</div>
-                  { % endif % }
+
+                  {% for message in get_flashed_messages() %}
+                  <center>
+                        <div style="margin: 10px; font-size: large; color:red;" class="flash">Actualiza la clave del
+                              usuario con correo:</div>
+                        <div style="margin: 10px; font-size: large; color:red;" class="flash">{{ message }}</div>
+                  </center>
+                  {% endfor %}
+
                   <br>
                   <div id="input_container">
                         <input type="password" name="clave" placeholder="New Password" id="clave" required>
@@ -28,7 +33,8 @@
                               onmouseover="mostrarContrasena()" onmouseout="ocultarContraseña()">
                   </div>
                   <div id="input_container">
-                        <input type="password" name="repitaclave" placeholder="Repeat New Password" id="repetirclave" required>
+                        <input type="password" name="repitaclave" placeholder="Repeat New Password" id="repetirclave"
+                              required>
                         <img src="{{ url_for('static', filename='images/visible.ico')}}" id="input_img"
                               onmouseover="mostrarPassword()" onmouseout="ocultarPassword()">
                   </div>
